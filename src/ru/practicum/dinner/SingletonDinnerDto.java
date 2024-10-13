@@ -1,13 +1,12 @@
 package ru.practicum.dinner;
 
-//DTO
-// SingletonDinnerDto
-
 import java.util.*;
 
 public enum SingletonDinnerDto {
 
 	DINNER;
+
+	private Map<String, Set<String>> mapDinners = new HashMap<>();
 
 	private SingletonDinnerDto() {
 	}
@@ -16,15 +15,19 @@ public enum SingletonDinnerDto {
 		return DINNER;
 	}
 
-	private Map<String, List<String>> mapDinners = new HashMap<>();
-
-	public boolean addDinner(String dishType, String dishName) {
-		if (!isValid(dishType)) {
-			mapDinners.put(dishType, new ArrayList<String>());
+	public boolean containsDishType(String dishType) {
+		if (mapDinners.containsKey(dishType)) {
+			return true;
 		}
-		List<String> namesDishes = mapDinners.get(dishType);
-		if (!namesDishes.contains(dishName)) {
-			namesDishes.add(dishName);
+		return false;
+	}
+
+	public boolean putDinner(String dishType, String dishName) {
+		if (!isValid(dishType)) {
+			mapDinners.put(dishType, new HashSet<String>());
+		}
+		Set<String> namesDishes = mapDinners.get(dishType);
+		if (namesDishes.add(dishName)) {
 			mapDinners.put(dishType, namesDishes);
 			return true;
 		}
@@ -45,7 +48,7 @@ public enum SingletonDinnerDto {
 		return false;
 	}
 
-	public List<String> getDishes(String dishType) {
+	public Set<String> getDishes(String dishType) {
 		if (isValid(dishType)) {
 			return mapDinners.get(dishType);
 		}
@@ -66,7 +69,7 @@ public enum SingletonDinnerDto {
 		return true;
 	}
 
-	public boolean deleteDishType(String dishType) {
+	public boolean remove(String dishType) {
 		if (mapDinners.containsKey(dishType)) {
 			mapDinners.remove(dishType);
 			return true;
@@ -74,9 +77,9 @@ public enum SingletonDinnerDto {
 		return false;
 	}
 
-	public boolean deleteDishName(String dishType, String dishName) {
+	public boolean removeDishName(String dishType, String dishName) {
 		if (mapDinners.containsKey(dishType)) {
-			List<String> tmp = mapDinners.get(dishType);
+			Set<String> tmp = mapDinners.get(dishType);
 			if (tmp.contains(dishName)) {
 				tmp.remove(dishName);
 				return true;
