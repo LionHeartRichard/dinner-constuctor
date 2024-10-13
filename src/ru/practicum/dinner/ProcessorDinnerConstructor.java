@@ -2,10 +2,10 @@ package ru.practicum.dinner;
 
 import java.util.Scanner;
 
-public class DinnerConstructor implements ManagerCommands {
+public class ProcessorDinnerConstructor implements Processor {
 
 	@Override
-	public String getIdx() {
+	public String getKeyProcessor() {
 		return "2";
 	}
 

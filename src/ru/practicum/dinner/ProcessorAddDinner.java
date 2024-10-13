@@ -2,23 +2,19 @@ package ru.practicum.dinner;
 
 import java.util.Scanner;
 
-public class AddNewDish implements ManagerCommands {
-
-	public AddNewDish() {
-		registerMyself(HandlerCommands handler);//!!!!!!!!!!!!!!!!!!!!!!!!
-	}
+public class ProcessorAddDinner implements Processor {
 
 	@Override
-	public String getIdx() {
+	public String getKeyProcessor() {
 		return "1";
 	}
 
 	@Override
 	public void apply(SingletonDinnerDto dto, Scanner scanner) {
 		System.out.println("Введите тип блюда:");
-		String dishType = scanner.next();
+		String dishType = scanner.nextLine();
 		System.out.println("Введите название блюда:");
-		String dishName = scanner.next();
+		String dishName = scanner.nextLine();
 		dto.putDinner(dishType, dishName);
 	}
 
