@@ -1,8 +1,10 @@
 package ru.practicum.dinner;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class ProcessorDinnerConstructor implements Processor {
+
+	private Map<Integer, Set<Integer>> mapStorageGenDishes = new HashMap<>();
 
 	@Override
 	public String getKeyProcessor() {
@@ -21,11 +23,13 @@ public class ProcessorDinnerConstructor implements Processor {
 				"Вводите типы блюда, разделяя символом переноса строки (enter). Для завершения ввода введите пустую строку");
 		String nextItem = scanner.nextLine();
 
-		// реализуйте ввод типов блюд
+		Set<String> typeDishes = new HashSet<>();
 		while (!nextItem.isEmpty()) {
-
+			nextItem = scanner.next();
+			typeDishes.add(nextItem);
 		}
-		// сгенерируйте комбинации блюд и выведите на экран
+
+		typeDishes.forEach(v -> System.out.println(v));
 	}
 
 }

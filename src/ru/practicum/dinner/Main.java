@@ -9,32 +9,14 @@ import java.util.Map;
 public class Main {
 
 	public static void main(String[] args) {
+
 		Scanner scanner = new Scanner(System.in);
 		SingletonDinnerDto dto = SingletonDinnerDto.DINNER.getInstance();
+		ProcessorsFactory factory = initFactoryProcessors();
 
 		while (true) {
 			printMenu();
 			String command = scanner.next();
-
-			// ------------Design--Patterns!!!!------------
-			// FACTORY--------And------Registry-------------------------
-
-			ProcessorsFactory factory = new ProcessorsFactory();
-
-			List<Processor> processorsHandler = new ArrayList<>();
-			ProcessorAddDinner dinnerAdd = new ProcessorAddDinner();
-			processorsHandler.add(dinnerAdd);
-			ProcessorDinnerConstructor dinnerConstructor = new ProcessorDinnerConstructor();
-			processorsHandler.add(dinnerConstructor);
-			ProcessorPrintDinner dinnerPrint = new ProcessorPrintDinner();
-			processorsHandler.add(dinnerPrint);
-			ProcessorClearListDinners dinnerClear = new ProcessorClearListDinners();
-			processorsHandler.add(dinnerClear);
-
-			for (Processor currentProcess : processorsHandler) {
-				currentProcess.registerMyself(factory);
-				factory.register(currentProcess.getKeyProcessor(), currentProcess);
-			}
 
 			if (command.equals("0")) {
 				break;
@@ -47,7 +29,6 @@ public class Main {
 		}
 		scanner.close();
 		System.out.println("Работа программы завершена! Отличного настроения!!!");
-
 	}
 
 	private static void printMenu() {
@@ -57,5 +38,29 @@ public class Main {
 		System.out.println("2 - Сгенерировать комбинации блюд");
 		System.out.println("3 - Вывести на экран классификацию блюд");
 		System.out.println("4 - Очистить список блюд");
+	}
+
+	private static ProcessorsFactory initFactoryProcessors() {
+		ProcessorsFactory factory = new ProcessorsFactory();
+		List<Processor> processorsHandler = initProcessorsHandler();
+		for (Processor currentProcess : processorsHandler) {
+			currentProcess.registerMyself(factory);
+			factory.register(currentProcess.getKeyProcessor(), currentProcess);
+		}
+		return factory;
+	}
+
+	private static List<Processor> initProcessorsHandler() {
+		List<Processor> processorsHandler = new ArrayList<>();
+		ProcessorAddDinner dinnerAdd = new ProcessorAddDinner();
+		processorsHandler.add(dinnerAdd);
+		ProcessorDinnerConstructor dinnerConstructor = new ProcessorDinnerConstructor();
+		processorsHandler.add(dinnerConstructor);
+		ProcessorPrintDinner dinnerPrint = new ProcessorPrintDinner();
+		processorsHandler.add(dinnerPrint);
+		ProcessorClearListDinners dinnerClear = new ProcessorClearListDinners();
+		processorsHandler.add(dinnerClear);
+
+		return processorsHandler;
 	}
 }
