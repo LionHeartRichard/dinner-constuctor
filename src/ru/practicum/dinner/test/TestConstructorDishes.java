@@ -40,6 +40,5 @@ public class TestConstructorDishes {
 		List<String> combos = processor.getCombos(30, dto, typeDishes);
 
 		combos.forEach(v -> System.out.println(v));
-
 	}
 }

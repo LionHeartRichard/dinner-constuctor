@@ -4,8 +4,6 @@ import java.util.*;
 
 public class ProcessorDinnerConstructor implements Processor {
 
-	private Set<Integer> storageGenRandomeIdx = new HashSet<>();
-
 	@Override
 	public String getKeyProcessor() {
 		return "2";
@@ -13,6 +11,10 @@ public class ProcessorDinnerConstructor implements Processor {
 
 	@Override
 	public void apply(SingletonDinnerDto dto, Scanner scanner) {
+		if (!dto.isValid()) {
+			System.out.println("Отсутствуют блюда для генерации!");
+			return;
+		}
 		System.out.println("Начинаем конструировать обед...");
 
 		System.out.println("Введите количество наборов, которые нужно сгенерировать:");
@@ -61,7 +63,7 @@ public class ProcessorDinnerConstructor implements Processor {
 
 	public String getRandomDish(List<String> tmp) {
 		Random random = new Random();
-		int idx = random.nextInt(tmp.size() - 1);
+		int idx = random.nextInt(tmp.size());
 		return tmp.get(idx);
 	}
 }
