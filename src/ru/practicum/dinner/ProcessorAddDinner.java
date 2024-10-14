@@ -12,6 +12,7 @@ public class ProcessorAddDinner implements Processor {
 	@Override
 	public void apply(SingletonDinnerDto dto, Scanner scanner) {
 		System.out.println("Введите тип блюда:");
+		scanner.nextLine();
 		String dishType = scanner.nextLine();
 		System.out.println("Введите название блюда:");
 		String dishName = scanner.nextLine();
