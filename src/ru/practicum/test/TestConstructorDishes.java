@@ -1,4 +1,4 @@
-package ru.practicum.dinner.test;
+package ru.practicum.test;
 
 import ru.practicum.dinner.service.impl.*;
 import ru.practicum.dinner.dto.SingletonDinnerDto;
