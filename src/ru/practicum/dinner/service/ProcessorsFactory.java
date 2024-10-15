@@ -1,4 +1,4 @@
-package ru.practicum.dinner;
+package ru.practicum.dinner.service;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,6 +1,9 @@
-package ru.practicum.dinner;
+package ru.practicum.dinner.service.impl;
 
 import java.util.Scanner;
+
+import ru.practicum.dinner.service.Processor;
+import ru.practicum.dinner.dto.SingletonDinnerDto;
 
 public class ProcessorAddDinner implements Processor {
 

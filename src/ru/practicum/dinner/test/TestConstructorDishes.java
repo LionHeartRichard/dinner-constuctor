@@ -1,7 +1,7 @@
 package ru.practicum.dinner.test;
 
-import ru.practicum.dinner.SingletonDinnerDto;
-import ru.practicum.dinner.ProcessorDinnerConstructor;
+import ru.practicum.dinner.service.impl.*;
+import ru.practicum.dinner.dto.SingletonDinnerDto;
 import java.util.*;
 
 public class TestConstructorDishes {

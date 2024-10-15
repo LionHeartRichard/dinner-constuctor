@@ -1,4 +1,4 @@
-package ru.practicum.dinner;
+package ru.practicum.dinner.dto;
 
 import java.util.*;
 

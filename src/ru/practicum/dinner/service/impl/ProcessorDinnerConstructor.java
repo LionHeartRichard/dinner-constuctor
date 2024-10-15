@@ -1,6 +1,9 @@
-package ru.practicum.dinner;
+package ru.practicum.dinner.service.impl;
 
 import java.util.*;
+
+import ru.practicum.dinner.service.Processor;
+import ru.practicum.dinner.dto.SingletonDinnerDto;
 
 public class ProcessorDinnerConstructor implements Processor {
 
@@ -39,6 +42,12 @@ public class ProcessorDinnerConstructor implements Processor {
 			}
 			typeDishes.add(nextItem);
 		}
+
+		if (typeDishes == null || typeDishes.isEmpty()) {
+			System.out.println("Список типов блюд пуст!!!");
+			return;
+		}
+
 		List<String> combos = getCombos(numberOfCombos, dto, typeDishes);
 		combos.forEach(v -> System.out.println(v));
 		System.out.println();
@@ -55,8 +64,10 @@ public class ProcessorDinnerConstructor implements Processor {
 	public String getCombo(SingletonDinnerDto dto, Set<String> typeDishes) {
 		List<String> dishes = new ArrayList<>();
 		for (String type : typeDishes) {
-			List<String> tmp = new ArrayList<>(dto.getDishes(type));
-			dishes.add(getRandomDish(tmp));
+			if (dto.containsDishType(type)) {
+				List<String> tmp = new ArrayList<>(dto.getDishes(type));
+				dishes.add(getRandomDish(tmp));
+			}
 		}
 		return dishes.toString();
 	}

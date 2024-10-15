@@ -1,10 +1,9 @@
 package ru.practicum.dinner;
 
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import ru.practicum.dinner.dto.SingletonDinnerDto;
+import ru.practicum.dinner.service.*;
+import ru.practicum.dinner.service.impl.*;
 
 public class Main {
 
