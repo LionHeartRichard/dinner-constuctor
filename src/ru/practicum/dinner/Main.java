@@ -47,7 +47,6 @@ public class Main {
 		List<Processor> processorsHandler = initProcessorsHandler();
 		for (Processor currentProcess : processorsHandler) {
 			currentProcess.registerMyself(factory);
-			factory.register(currentProcess.getKeyProcessor(), currentProcess);
 		}
 		return factory;
 	}
